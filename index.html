@@ -12,7 +12,7 @@
         function App(){
             const [counter, modifier] = React.useState(0);
             function onClick(){
-                return modifier(counter + 1);
+                return modifier((current)=> current + 1);
             }
 
             return(
