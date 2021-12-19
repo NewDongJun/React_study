@@ -1,38 +1,81 @@
 <!DOCTYPE html>
 <html>
-    <body>
-        <div id="root"></div>
-    </body>
-    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script type="text/babel">
-        const root = document.getElementById("root");
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
 
-        function App(){
-            const [minutes, setMinutes] = React.useState();
-            const onChange = (event) =>{
-                setMinutes(event.target.value);
-            }
-            return(
-                <div>
-                    <h1 className="hi">Super Convertor</h1>
-                    <label for="Minutes">Minutes</label>
-                    <input 
-                        vakues={minutes} 
-                        id="Minutes" 
-                        placeholder="Minutes" 
-                        type="number" 
-                        onChange={onChange}
-                    />
-                    <h4>You want to convert</h4>
-                    <label for="Hours">Hours</label>
-                    <input id="Hours" placeholder="Hours" type="number" />
-                </div>
-            );
-        }
+    function MinutesToHours() {
+      const [amount, setAmount] = React.useState(0);
+      const [flipped, setFlipped] = React.useState(false);
+      const onChange = (event) => {
+        setAmount(event.target.value);
+      };
+      const reset = () => setAmount(0);
+      const onFlip = () => {
+        reset();
+        setFlipped((current) => !current);
+      };
 
-        ReactDOM.render(<App />, root);
+      return (
+        <div>
+          <h2>minutes to hours</h2>
+          <div>
+            <label for="minutes">Minutes</label>
+            <input
+              value={flipped ? amount * 60 : amount}
+              id="minutes"
+              placeholder="Minutes"
+              type="number"
+              onChange={onChange}
+              disabled={flipped}
+            />
+          </div>
+          <div>
+            <label for="hours">Hours</label>
+            <input
+              value={flipped ? amount : amount / 60}
+              id="hours"
+              placeholder="Hours"
+              type="number"
+              disabled={!flipped}
+              onChange={onChange}
+            />
+          </div>
+          <button onClick={reset}>Reset</button>
+          <button onClick={onFlip}>{flipped ? "Trun back" : "invert"}</button>
+        </div>
+      );
+    }
 
-    </script>
+    function KmtoMiles() {
+      return <h3>KM to Miles</h3>;
+    }
+
+    function App() {
+      const [index, setIndex] = React.useState("0");
+
+      const onSelect = (event) => {
+        setIndex(event.target.value);
+      };
+      return (
+        <div>
+          <h1>Super Convertor</h1>
+          <select value={index} onChange={onSelect}>
+            <option value="0">MInutes & Hours</option>
+            <option value="1">KM & Miles</option>
+          </select>
+          <hr />
+          {index === "0" ? <MinutesToHours /> : null}
+          {index === "1" ? <KmtoMiles /> : null}
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, root);
+  </script>
 </html>
