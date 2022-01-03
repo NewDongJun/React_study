@@ -1,10 +1,13 @@
 {
   "files": {
-    "main.js": "/React_study/react-example/build/static/js/main.1fffe8a1.js",
+    "main.css": "/React_study/react-example/build/static/css/main.4ed4dfe0.css",
+    "main.js": "/React_study/react-example/build/static/js/main.5af56ee8.js",
     "index.html": "/React_study/react-example/build/index.html",
-    "main.1fffe8a1.js.map": "/React_study/react-example/build/static/js/main.1fffe8a1.js.map"
+    "main.4ed4dfe0.css.map": "/React_study/react-example/build/static/css/main.4ed4dfe0.css.map",
+    "main.5af56ee8.js.map": "/React_study/react-example/build/static/js/main.5af56ee8.js.map"
   },
   "entrypoints": [
-    "static/js/main.1fffe8a1.js"
+    "static/css/main.4ed4dfe0.css",
+    "static/js/main.5af56ee8.js"
   ]
 }
